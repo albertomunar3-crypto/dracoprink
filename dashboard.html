@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dracoprink | Dashboard</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+
+    <div class="layout-dashboard">
+
+        <!-- Menú Lateral -->
+        <aside class="sidebar">
+            <img src="logo.png" alt="Logo Dracoprink" class="logo-sidebar">
+            <h2>Dracoprink</h2>
+            <nav class="menu">
+                <a href="dashboard.html" class="active">📊 Panel Inicio</a>
+                <a href="#pedidos">🍕 Pedidos Activos</a>
+                <a href="#inventario">📦 Inventario Insumos</a>
+                <a href="index.html" class="btn-salir">🚪 Cerrar Sesión</a>
+            </nav>
+        </aside>
+
+        <!-- Contenido Principal -->
+        <main class="contenido-main">
+            <header class="header-dashboard">
+                <h1>Panel de Gestión - Pizzería</h1>
+                <div class="usuario-badge">Usuario: <strong>Administrador</strong></div>
+            </header>
+
+            <!-- Tarjetas de Resumen KPI -->
+            <section class="tarjetas-grid">
+                <div class="tarjeta-kpi">
+                    <h3>Ventas Hoy</h3>
+                    <p class="monto">$ 480.000 COP</p>
+                </div>
+                <div class="tarjeta-kpi">
+                    <h3>Pedidos Activos</h3>
+                    <p class="monto">3 En Cocina</p>
+                </div>
+                <div class="tarjeta-kpi alerta">
+                    <h3>Insumos Críticos</h3>
+                    <p class="monto" style="color: #ff3333;">2 Alertas</p>
+                </div>
+            </section>
+
+            <!-- Tabla de Órdenes -->
+            <section class="seccion-tabla">
+                <h2>Órdenes Recientes</h2>
+                <table class="tabla-pedidos">
+                    <thead>
+                        <tr>
+                            <th>ID Orden</th>
+                            <th>Cliente</th>
+                            <th>Dirección</th>
+                            <th>Total</th>
+                            <th>Estado</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>#ORD-001</td>
+                            <td>Valentina Vargas</td>
+                            <td>Calle 140 #11-45</td>
+                            <td>$ 45.000</td>
+                            <td><span class="badge camino">En Camino</span></td>
+                        </tr>
+                        <tr>
+                            <td>#ORD-002</td>
+                            <td>Carlos Mendoza</td>
+                            <td>Carrera 7 #72-10</td>
+                            <td>$ 62.000</td>
+                            <td><span class="badge cocina">En Cocina</span></td>
+                        </tr>
+                        <tr>
+                            <td>#ORD-003</td>
+                            <td>Andrés López</td>
+                            <td>Av. Boyacá #53-12</td>
+                            <td>$ 38.000</td>
+                            <td><span class="badge entregado">Entregado</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </section>
+        </main>
+
+    </div>
+
+</body>
+
+</html>
