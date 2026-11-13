@@ -47,8 +47,9 @@ npm install
 npm start
 ```
 
-Abrir http://localhost:3000. Express sirve también `frontend/`. Si el frontend se abre con
-Live Server u otro servidor, consume la API en `http://localhost:3000` (CORS habilitado).
+Abrir http://localhost:3000. Express sirve también `frontend/` (la API se consume en el mismo origen,
+sea cual sea `PORT`). Si el frontend se abre como archivo o con
+Live Server (puertos 5500/5501), consume la API en `http://localhost:3000` (CORS habilitado).
 
 | Método | Ruta | Descripción |
 |---|---|---|
