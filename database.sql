@@ -10,6 +10,8 @@
 --   mesero1  / mesero123  -> Mesero
 -- =========================================================
 
+SET NAMES utf8mb4;
+
 CREATE DATABASE IF NOT EXISTS dracoprink_bd CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 USE dracoprink_bd;
 
@@ -102,11 +104,11 @@ INSERT INTO clientes (id_cliente, nombre, apellido, telefono, correo, direccion)
 (6, 'Mariana', 'Torres', '3184442211', 'mariana.torres@gmail.com', 'Calle 26 #68-91');
 
 INSERT INTO usuarios (id_usuario, nombre_usuario, contrasena, rol) VALUES
-(1, 'admin',   '$2y$10$HefTWVj8QdLqh7Zr1UReT.QfEs/N73tU946EIZ90nNZS8KjxfYW7.', 'Administrador'),
-(2, 'cajero1', '$2y$10$Z2nD9Bgmcyx.5kIvX4YD4OFlj0H0GbG1Qym8AbISvv0l6KQRxOJ8q', 'Cajero'),
-(3, 'cocina1', '$2y$10$uG7NdhKJPpfH9/LagVETzeucCrCytHghZWcNNaaQO6kTaDwL1Qeee', 'Cocinero'),
-(4, 'domi1',   '$2y$10$k3m1aZuWcCBrB6E5gdbDb.n.0NXduxpgt5.rNzk33tsZfUVd2hGo.', 'Domiciliario'),
-(5, 'mesero1', '$2y$10$X2rg2mX0pPD3fADCkk8Tve73uoZXz4X5pzpW7NyVfo.ckTeifUDr6', 'Mesero');
+(1, 'admin',   '$2b$10$HefTWVj8QdLqh7Zr1UReT.QfEs/N73tU946EIZ90nNZS8KjxfYW7.', 'Administrador'),
+(2, 'cajero1', '$2b$10$Z2nD9Bgmcyx.5kIvX4YD4OFlj0H0GbG1Qym8AbISvv0l6KQRxOJ8q', 'Cajero'),
+(3, 'cocina1', '$2b$10$uG7NdhKJPpfH9/LagVETzeucCrCytHghZWcNNaaQO6kTaDwL1Qeee', 'Cocinero'),
+(4, 'domi1',   '$2b$10$k3m1aZuWcCBrB6E5gdbDb.n.0NXduxpgt5.rNzk33tsZfUVd2hGo.', 'Domiciliario'),
+(5, 'mesero1', '$2b$10$X2rg2mX0pPD3fADCkk8Tve73uoZXz4X5pzpW7NyVfo.ckTeifUDr6', 'Mesero');
 
 INSERT INTO categorias (id_categoria, nombre_categoria) VALUES
 (1, 'Pizzas'),

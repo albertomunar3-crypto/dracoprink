@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dracoprink | Dashboard</title>
+    <link rel="icon" href="img/logo.png">
     <link rel="stylesheet" href="css/dashboard.css">
 </head>
 
@@ -20,7 +21,7 @@
                 <a href="dashboard.html" class="active">📊 Panel Inicio</a>
                 <a href="#pedidos">🍕 Pedidos Activos</a>
                 <a href="#inventario">📦 Inventario Insumos</a>
-                <a href="index.html" class="btn-salir">🚪 Cerrar Sesión</a>
+                <a href="index.html" class="btn-salir" id="btn-cerrar-sesion">🚪 Cerrar Sesión</a>
             </nav>
         </aside>
 
@@ -28,22 +29,28 @@
         <main class="contenido-main">
             <header class="header-dashboard">
                 <h1>Panel de Gestión - Pizzería</h1>
-                <div class="usuario-badge">Usuario: <strong>Administrador</strong></div>
+                <div class="usuario-badge">Usuario: <strong id="usuario-actual">-</strong> (<span id="usuario-rol">-</span>)</div>
             </header>
 
             <!-- Tarjetas de Resumen KPI -->
             <section class="tarjetas-grid">
                 <div class="tarjeta-kpi">
                     <h3>Ventas Hoy</h3>
-                    <p class="monto">$ 480.000 COP</p>
+                    <p class="monto" id="kpi-ventas-hoy">...</p>
                 </div>
                 <div class="tarjeta-kpi">
                     <h3>Pedidos Activos</h3>
-                    <p class="monto">3 En Cocina</p>
+                    <p class="monto" id="kpi-pedidos-activos">...</p>
+                    <p class="detalle-kpi" id="kpi-pedidos-detalle"></p>
                 </div>
                 <div class="tarjeta-kpi alerta">
-                    <h3>Insumos Críticos</h3>
-                    <p class="monto" style="color: #ff3333;">2 Alertas</p>
+                    <h3>Productos con Bajo Stock</h3>
+                    <p class="monto" id="kpi-bajo-stock" style="color: #ff3333;">...</p>
+                </div>
+                <div class="tarjeta-kpi">
+                    <h3>Utilidad Neta del Mes</h3>
+                    <p class="monto" id="kpi-utilidad">...</p>
+                    <p class="detalle-kpi" id="kpi-utilidad-detalle"></p>
                 </div>
             </section>
 
@@ -55,32 +62,14 @@
                         <tr>
                             <th>ID Orden</th>
                             <th>Cliente</th>
-                            <th>Dirección</th>
+                            <th>Tipo de Entrega</th>
                             <th>Total</th>
                             <th>Estado</th>
                         </tr>
                     </thead>
-                    <tbody>
+                    <tbody id="tabla-pedidos-cuerpo">
                         <tr>
-                            <td>#ORD-001</td>
-                            <td>Valentina Vargas</td>
-                            <td>Calle 140 #11-45</td>
-                            <td>$ 45.000</td>
-                            <td><span class="badge camino">En Camino</span></td>
-                        </tr>
-                        <tr>
-                            <td>#ORD-002</td>
-                            <td>Carlos Mendoza</td>
-                            <td>Carrera 7 #72-10</td>
-                            <td>$ 62.000</td>
-                            <td><span class="badge cocina">En Cocina</span></td>
-                        </tr>
-                        <tr>
-                            <td>#ORD-003</td>
-                            <td>Andrés López</td>
-                            <td>Av. Boyacá #53-12</td>
-                            <td>$ 38.000</td>
-                            <td><span class="badge entregado">Entregado</span></td>
+                            <td colspan="5" class="mensaje-tabla">Cargando pedidos...</td>
                         </tr>
                     </tbody>
                 </table>
@@ -88,6 +77,9 @@
         </main>
 
     </div>
+
+    <script src="js/api.js"></script>
+    <script src="js/dashboard.js"></script>
 
 </body>
 
