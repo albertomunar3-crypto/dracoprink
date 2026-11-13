@@ -89,7 +89,7 @@ function mostrarMensajeTabla(mensaje) {
 
 async function cargarDashboard() {
     try {
-        const respuesta = await fetch(`${API_URL}/api/dashboard`);
+        const respuesta = await fetchAutenticado("/api/dashboard");
         if (!respuesta.ok) {
             throw new Error(`HTTP ${respuesta.status}`);
         }
@@ -103,12 +103,10 @@ async function cargarDashboard() {
 }
 
 if (sesion) {
-    document.getElementById("usuario-actual").textContent = sesion.nombre_usuario;
-    document.getElementById("usuario-rol").textContent = sesion.rol;
+    document.getElementById("usuario-actual").textContent = sesion.usuario.nombre_usuario;
+    document.getElementById("usuario-rol").textContent = sesion.usuario.rol;
 
-    document.getElementById("btn-cerrar-sesion").addEventListener("click", () => {
-        localStorage.removeItem(CLAVE_SESION);
-    });
+    document.getElementById("btn-cerrar-sesion").addEventListener("click", cerrarSesion);
 
     cargarDashboard();
 }

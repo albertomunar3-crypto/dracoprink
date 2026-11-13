@@ -7,8 +7,29 @@ const CLAVE_SESION = "dracoprink_usuario";
 
 function obtenerSesion() {
     try {
-        return JSON.parse(localStorage.getItem(CLAVE_SESION));
+        const sesion = JSON.parse(localStorage.getItem(CLAVE_SESION));
+        return sesion && sesion.token && sesion.usuario ? sesion : null;
     } catch (error) {
         return null;
     }
+}
+
+function cerrarSesion() {
+    localStorage.removeItem(CLAVE_SESION);
+}
+
+async function fetchAutenticado(ruta, opciones = {}) {
+    const sesion = obtenerSesion();
+    const respuesta = await fetch(`${API_URL}${ruta}`, {
+        ...opciones,
+        headers: { ...opciones.headers, Authorization: `Bearer ${sesion ? sesion.token : ""}` }
+    });
+
+    if (respuesta.status === 401) {
+        cerrarSesion();
+        window.location.replace("index.html");
+        throw new Error("Sesión inválida o expirada");
+    }
+
+    return respuesta;
 }

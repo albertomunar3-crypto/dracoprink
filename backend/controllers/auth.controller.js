@@ -1,4 +1,5 @@
 const bcrypt = require('bcrypt');
+const jwt = require('jsonwebtoken');
 const { pool } = require('../config/db');
 
 async function login(req, res, next) {
@@ -20,13 +21,16 @@ async function login(req, res, next) {
             return res.status(401).json({ mensaje: 'Usuario o contraseña incorrectos' });
         }
 
-        res.json({
-            usuario: {
-                id_usuario: encontrado.id_usuario,
-                nombre_usuario: encontrado.nombre_usuario,
-                rol: encontrado.rol
-            }
+        const usuarioSesion = {
+            id_usuario: encontrado.id_usuario,
+            nombre_usuario: encontrado.nombre_usuario,
+            rol: encontrado.rol
+        };
+        const token = jwt.sign(usuarioSesion, process.env.JWT_SECRET, {
+            expiresIn: process.env.JWT_EXPIRES_IN || '8h'
         });
+
+        res.json({ token, usuario: usuarioSesion });
     } catch (error) {
         next(error);
     }

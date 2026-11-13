@@ -29,7 +29,7 @@ try{
         return;
     }
 
-    localStorage.setItem(CLAVE_SESION,JSON.stringify(datos.usuario));
+    localStorage.setItem(CLAVE_SESION,JSON.stringify({token:datos.token,usuario:datos.usuario}));
     window.location.href="dashboard.html";
 
 }catch(error){

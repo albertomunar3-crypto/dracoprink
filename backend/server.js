@@ -5,6 +5,7 @@ const express = require('express');
 const cors = require('cors');
 
 const { verificarConexion } = require('./config/db');
+const { verificarToken } = require('./middlewares/auth.middleware');
 const authRoutes = require('./routes/auth.routes');
 const dashboardRoutes = require('./routes/dashboard.routes');
 
@@ -16,6 +17,9 @@ app.use(cors({ origin: origenes.includes('*') ? '*' : origenes }));
 app.use(express.json());
 
 app.use('/api/auth', authRoutes);
+
+// Toda ruta de /api registrada después de esta línea exige un token válido.
+app.use('/api', verificarToken);
 app.use('/api/dashboard', dashboardRoutes);
 app.use('/api', (req, res) => {
     res.status(404).json({ mensaje: 'Ruta no encontrada' });
@@ -32,6 +36,11 @@ app.use((err, req, res, next) => {
 });
 
 async function iniciar() {
+    if (!process.env.JWT_SECRET || process.env.JWT_SECRET === 'cambiar_por_una_clave_larga_y_aleatoria') {
+        console.error('Configure una JWT_SECRET propia en el archivo .env');
+        process.exit(1);
+    }
+
     try {
         await verificarConexion();
         console.log('Conexión a MySQL establecida');
