@@ -1,0 +1,41 @@
+// Express sirve el frontend y la API en el mismo origen, sea cual sea su PORT.
+// Si la página se abre como archivo o con Live Server, se usa la API local.
+const ORIGEN_EXTERNO = window.location.protocol === "file:" || ["5500", "5501"].includes(window.location.port);
+const API_URL = ORIGEN_EXTERNO ? "http://localhost:3000" : "";
+
+const CLAVE_SESION = "dracoprink_usuario";
+
+function obtenerSesion() {
+    let sesion = null;
+    try {
+        sesion = JSON.parse(localStorage.getItem(CLAVE_SESION));
+    } catch (error) {}
+
+    if (sesion && sesion.token && sesion.usuario) {
+        return sesion;
+    }
+    cerrarSesion();
+    return null;
+}
+
+function cerrarSesion() {
+    try {
+        localStorage.removeItem(CLAVE_SESION);
+    } catch (error) {}
+}
+
+async function fetchAutenticado(ruta, opciones = {}) {
+    const sesion = obtenerSesion();
+    const respuesta = await fetch(`${API_URL}${ruta}`, {
+        ...opciones,
+        headers: { ...opciones.headers, Authorization: `Bearer ${sesion ? sesion.token : ""}` }
+    });
+
+    if (respuesta.status === 401) {
+        cerrarSesion();
+        window.location.replace("index.html");
+        return new Promise(() => {});
+    }
+
+    return respuesta;
+}

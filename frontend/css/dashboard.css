@@ -1,141 +1,13 @@
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-    font-family:Arial, Helvetica, sans-serif;
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
 }
 
-body{
-
-    background:linear-gradient(135deg,#111,#222,#111);
-
-    height:100vh;
-
-    display:flex;
-
-    justify-content:center;
-
-    align-items:center;
-
-}
-
-.contenedor{
-
-    width:100%;
-
-    display:flex;
-
-    justify-content:center;
-
-    align-items:center;
-
-}
-
-.login{
-
-    width: 100%;           
-    max-width: 380px;       
-    background: #1b1b1b;
-    border-radius: 20px;
-    padding: 35px;
-    text-align: center;
-    box-shadow: 0 0 30px rgba(255, 140, 0, 0.4);
-}
-
-
-.logo{
-
-    width:90px;
-    height:auto;
-    margin:0 auto 20px auto;
-    display:block;
-
-}
-
-h1{
-
-    color:#ffb000;
-
-    margin-bottom:10px;
-
-}
-
-.subtitulo{
-
-    color:white;
-
-    margin-bottom:30px;
-
-}
-
-label{
-
-    display:block;
-
-    color:white;
-
-    text-align:left;
-
-    margin-top:15px;
-
-    margin-bottom:5px;
-
-}
-
-input{
-
-    width:100%;
-
-    padding:12px;
-
-    border:none;
-
-    border-radius:10px;
-
-    margin-bottom:15px;
-
-    font-size:15px;
-
-}
-
-input:focus{
-
-    outline:3px solid orange;
-
-}
-
-button{
-
-    width:100%;
-
-    padding:14px;
-
-    background:#ff7300;
-
-    color:white;
-
-    border:none;
-
-    border-radius:10px;
-
-    font-size:17px;
-
-    cursor:pointer;
-
-    transition:.3s;
-
-}
-
-button:hover{
-
-    background:#ff9800;
-
-    transform:scale(1.03);
-
-}
-/* --- ESTILOS DEL DASHBOARD --- */
 body {
-    align-items: stretch; /* Permite que el Dashboard ocupe toda la pantalla */
+    background: #111;
+    min-height: 100vh;
 }
 
 .layout-dashboard {
@@ -204,6 +76,11 @@ body {
     margin-bottom: 25px;
 }
 
+.header-dashboard h1 {
+    color: #ffb000;
+    margin-bottom: 10px;
+}
+
 .tarjetas-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -269,3 +146,19 @@ body {
 .badge.camino { background: #1e3a8a; color: #93c5fd; }
 .badge.cocina { background: #7c2d12; color: #fdba74; }
 .badge.entregado { background: #14532d; color: #86efac; }
+.badge.cancelado { background: #7f1d1d; color: #fca5a5; }
+
+.detalle-kpi {
+    margin-top: 6px;
+    font-size: 0.8rem;
+    color: #aaa;
+}
+
+.monto.negativo {
+    color: #ff3333;
+}
+
+.tabla-pedidos td.mensaje-tabla {
+    text-align: center;
+    color: #aaa;
+}
