@@ -19,7 +19,9 @@ function obtenerSesion() {
 }
 
 function cerrarSesion() {
-    localStorage.removeItem(CLAVE_SESION);
+    try {
+        localStorage.removeItem(CLAVE_SESION);
+    } catch (error) {}
 }
 
 async function fetchAutenticado(ruta, opciones = {}) {
