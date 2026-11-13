@@ -6,12 +6,16 @@ const API_URL = ORIGEN_EXTERNO ? "http://localhost:3000" : "";
 const CLAVE_SESION = "dracoprink_usuario";
 
 function obtenerSesion() {
+    let sesion = null;
     try {
-        const sesion = JSON.parse(localStorage.getItem(CLAVE_SESION));
-        return sesion && sesion.token && sesion.usuario ? sesion : null;
-    } catch (error) {
-        return null;
+        sesion = JSON.parse(localStorage.getItem(CLAVE_SESION));
+    } catch (error) {}
+
+    if (sesion && sesion.token && sesion.usuario) {
+        return sesion;
     }
+    cerrarSesion();
+    return null;
 }
 
 function cerrarSesion() {
@@ -28,7 +32,7 @@ async function fetchAutenticado(ruta, opciones = {}) {
     if (respuesta.status === 401) {
         cerrarSesion();
         window.location.replace("index.html");
-        throw new Error("Sesión inválida o expirada");
+        return new Promise(() => {});
     }
 
     return respuesta;
