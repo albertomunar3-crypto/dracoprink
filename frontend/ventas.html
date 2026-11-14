@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dracoprink | Ventas y Contabilidad</title>
+    <link rel="icon" href="img/logo.png">
+    <link rel="stylesheet" href="css/dashboard.css">
+</head>
+
+<body>
+
+    <div class="layout-dashboard">
+
+        <!-- Menú Lateral -->
+        <aside class="sidebar">
+            <img src="img/logo.png" alt="Logo Dracoprink" class="logo-sidebar">
+            <h2>Dracoprink</h2>
+            <nav class="menu">
+                <a href="dashboard.html">📊 Dashboard</a>
+                <a href="pedidos.html">🍕 Pedidos y Domicilios</a>
+                <a href="inventario.html">📦 Inventario</a>
+                <a href="clientes.html">👥 Clientes</a>
+                <a href="ventas.html" class="active">💰 Ventas y Contabilidad</a>
+                <a href="index.html" class="btn-salir" id="btn-cerrar-sesion">🚪 Cerrar Sesión</a>
+            </nav>
+        </aside>
+
+        <!-- Contenido Principal -->
+        <main class="contenido-main">
+            <header class="header-dashboard">
+                <h1>Ventas y Contabilidad</h1>
+                <div class="usuario-badge">Usuario: <strong id="usuario-actual">-</strong> (<span id="usuario-rol">-</span>)</div>
+            </header>
+
+            <section class="cabecera-seccion">
+                <h2 class="texto-secundario">Resumen contable</h2>
+                <select id="periodo-resumen" class="campo-control" aria-label="Periodo del resumen">
+                    <option value="mes">Mes en curso</option>
+                    <option value="todo">Histórico</option>
+                </select>
+            </section>
+
+            <section class="tarjetas-grid">
+                <div class="tarjeta-kpi">
+                    <h3>Total Ingresos</h3>
+                    <p class="monto" id="kpi-ingresos">...</p>
+                </div>
+                <div class="tarjeta-kpi alerta">
+                    <h3>Total Egresos</h3>
+                    <p class="monto negativo" id="kpi-egresos">...</p>
+                </div>
+                <div class="tarjeta-kpi">
+                    <h3>Utilidad Neta</h3>
+                    <p class="monto" id="kpi-utilidad">...</p>
+                    <p class="detalle-kpi">Ingresos − Egresos</p>
+                </div>
+            </section>
+
+            <section class="seccion-tabla">
+                <h2>Pedidos Entregados Pendientes de Cobro</h2>
+                <table class="tabla-pedidos">
+                    <thead>
+                        <tr>
+                            <th>ID Orden</th>
+                            <th>Fecha / Hora</th>
+                            <th>Cliente</th>
+                            <th>Tipo de Entrega</th>
+                            <th>Total</th>
+                            <th>Método de Pago</th>
+                            <th>Monto Pagado</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody id="tabla-pendientes">
+                        <tr>
+                            <td colspan="8" class="mensaje-tabla">Cargando...</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </section>
+
+            <section class="seccion-tabla">
+                <h2>Registrar Egreso</h2>
+                <form class="formulario" id="form-egreso">
+                    <label class="ancho-completo">Concepto
+                        <input type="text" name="concepto" maxlength="150" required>
+                    </label>
+                    <label>Categoría del gasto
+                        <select name="categoria_gasto" required>
+                            <option value="Insumos">Insumos</option>
+                            <option value="Servicios">Servicios</option>
+                            <option value="Nomina">Nómina</option>
+                            <option value="Domicilios">Domicilios</option>
+                            <option value="Otros">Otros</option>
+                        </select>
+                    </label>
+                    <label>Monto (COP)
+                        <input type="number" name="monto" min="0.01" step="0.01" required>
+                    </label>
+                    <div class="acciones">
+                        <button type="submit" class="btn primario">+ Registrar Egreso</button>
+                    </div>
+                </form>
+            </section>
+
+            <section class="seccion-tabla">
+                <h2>Egresos</h2>
+                <table class="tabla-pedidos">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Fecha / Hora</th>
+                            <th>Concepto</th>
+                            <th>Categoría</th>
+                            <th>Monto</th>
+                            <th>Registrado por</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tabla-egresos">
+                        <tr>
+                            <td colspan="6" class="mensaje-tabla">Cargando...</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </section>
+
+            <section class="seccion-tabla">
+                <h2>Ventas Registradas</h2>
+                <table class="tabla-pedidos">
+                    <thead>
+                        <tr>
+                            <th>ID Venta</th>
+                            <th>Fecha / Hora</th>
+                            <th>Pedido</th>
+                            <th>Cliente</th>
+                            <th>Método de Pago</th>
+                            <th>Monto Pagado</th>
+                            <th>Registrado por</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tabla-ventas">
+                        <tr>
+                            <td colspan="7" class="mensaje-tabla">Cargando...</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </section>
+        </main>
+
+    </div>
+
+    <script src="js/api.js"></script>
+    <script src="js/comun.js"></script>
+    <script src="js/ventas.js"></script>
+
+</body>
+
+</html>

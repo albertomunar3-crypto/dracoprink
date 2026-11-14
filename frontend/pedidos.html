@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dracoprink | Pedidos y Domicilios</title>
+    <link rel="icon" href="img/logo.png">
+    <link rel="stylesheet" href="css/dashboard.css">
+</head>
+
+<body>
+
+    <div class="layout-dashboard">
+
+        <!-- Menú Lateral -->
+        <aside class="sidebar">
+            <img src="img/logo.png" alt="Logo Dracoprink" class="logo-sidebar">
+            <h2>Dracoprink</h2>
+            <nav class="menu">
+                <a href="dashboard.html">📊 Dashboard</a>
+                <a href="pedidos.html" class="active">🍕 Pedidos y Domicilios</a>
+                <a href="inventario.html">📦 Inventario</a>
+                <a href="clientes.html">👥 Clientes</a>
+                <a href="ventas.html">💰 Ventas y Contabilidad</a>
+                <a href="index.html" class="btn-salir" id="btn-cerrar-sesion">🚪 Cerrar Sesión</a>
+            </nav>
+        </aside>
+
+        <!-- Contenido Principal -->
+        <main class="contenido-main">
+            <header class="header-dashboard">
+                <h1>Pedidos y Domicilios</h1>
+                <div class="usuario-badge">Usuario: <strong id="usuario-actual">-</strong> (<span id="usuario-rol">-</span>)</div>
+            </header>
+
+            <section class="seccion-tabla">
+                <div class="cabecera-seccion">
+                    <h2>Todos los Pedidos</h2>
+                    <div class="acciones">
+                        <select id="filtro-estado" class="campo-control" aria-label="Filtrar por estado">
+                            <option value="Todos">Todos</option>
+                            <option value="En cocina">En cocina</option>
+                            <option value="En camino">En camino</option>
+                            <option value="Entregado">Entregado</option>
+                            <option value="Cancelado">Cancelado</option>
+                        </select>
+                        <button type="button" class="btn primario" id="btn-nuevo-pedido">+ Nuevo Pedido</button>
+                    </div>
+                </div>
+                <table class="tabla-pedidos">
+                    <thead>
+                        <tr>
+                            <th>ID Orden</th>
+                            <th>Fecha / Hora</th>
+                            <th>Cliente</th>
+                            <th>Tipo de Entrega</th>
+                            <th>Productos</th>
+                            <th>Total</th>
+                            <th>Estado</th>
+                            <th>Cambiar Estado</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tabla-pedidos">
+                        <tr>
+                            <td colspan="8" class="mensaje-tabla">Cargando...</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </section>
+
+            <dialog class="modal" id="modal-pedido">
+                <h2>Nuevo Pedido</h2>
+                <form class="formulario" id="form-pedido">
+                    <label>Cliente
+                        <select name="id_cliente" id="pedido-cliente" required></select>
+                    </label>
+                    <label>Tipo de entrega
+                        <select name="tipo_entrega" required>
+                            <option value="Domicilio">Domicilio</option>
+                            <option value="Mesa">Mesa</option>
+                            <option value="Para llevar">Para llevar</option>
+                        </select>
+                    </label>
+                    <label>Producto
+                        <select id="pedido-producto"></select>
+                    </label>
+                    <label>Cantidad
+                        <input type="number" id="pedido-cantidad" min="1" step="1" value="1">
+                    </label>
+                    <div class="acciones">
+                        <button type="button" class="btn secundario" id="btn-agregar-item">+ Agregar producto</button>
+                    </div>
+                    <div class="items-pedido">
+                <table class="tabla-pedidos">
+                    <thead>
+                        <tr>
+                            <th>Producto</th>
+                            <th>Precio</th>
+                            <th>Cantidad</th>
+                            <th>Subtotal</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody id="tabla-items">
+                        <tr>
+                            <td colspan="5" class="mensaje-tabla">Agregue productos al pedido</td>
+                        </tr>
+                    </tbody>
+                </table>
+                    </div>
+                    <p class="total-pedido">Total: <span id="pedido-total">$ 0</span></p>
+                    <div class="acciones">
+                        <button type="button" class="btn secundario" data-cerrar>Cancelar</button>
+                        <button type="submit" class="btn primario">Guardar Pedido</button>
+                    </div>
+                </form>
+            </dialog>
+        </main>
+
+    </div>
+
+    <script src="js/api.js"></script>
+    <script src="js/comun.js"></script>
+    <script src="js/pedidos.js"></script>
+
+</body>
+
+</html>

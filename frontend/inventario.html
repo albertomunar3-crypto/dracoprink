@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dracoprink | Inventario</title>
+    <link rel="icon" href="img/logo.png">
+    <link rel="stylesheet" href="css/dashboard.css">
+</head>
+
+<body>
+
+    <div class="layout-dashboard">
+
+        <!-- Menú Lateral -->
+        <aside class="sidebar">
+            <img src="img/logo.png" alt="Logo Dracoprink" class="logo-sidebar">
+            <h2>Dracoprink</h2>
+            <nav class="menu">
+                <a href="dashboard.html">📊 Dashboard</a>
+                <a href="pedidos.html">🍕 Pedidos y Domicilios</a>
+                <a href="inventario.html" class="active">📦 Inventario</a>
+                <a href="clientes.html">👥 Clientes</a>
+                <a href="ventas.html">💰 Ventas y Contabilidad</a>
+                <a href="index.html" class="btn-salir" id="btn-cerrar-sesion">🚪 Cerrar Sesión</a>
+            </nav>
+        </aside>
+
+        <!-- Contenido Principal -->
+        <main class="contenido-main">
+            <header class="header-dashboard">
+                <h1>Inventario</h1>
+                <div class="usuario-badge">Usuario: <strong id="usuario-actual">-</strong> (<span id="usuario-rol">-</span>)</div>
+            </header>
+
+            <section class="tarjetas-grid">
+                <div class="tarjeta-kpi">
+                    <h3>Productos Registrados</h3>
+                    <p class="monto" id="kpi-total-productos">...</p>
+                </div>
+                <div class="tarjeta-kpi alerta">
+                    <h3>Productos con Bajo Stock</h3>
+                    <p class="monto negativo" id="kpi-bajo-stock">...</p>
+                </div>
+                <div class="tarjeta-kpi">
+                    <h3>Categorías</h3>
+                    <p class="monto" id="kpi-categorias">...</p>
+                </div>
+            </section>
+
+            <section class="seccion-tabla">
+                <div class="cabecera-seccion">
+                    <h2>Productos</h2>
+                    <div class="acciones">
+                        <input type="search" id="buscar-producto" class="campo-control buscador" placeholder="Buscar producto o categoría..." aria-label="Buscar producto">
+                        <button type="button" class="btn primario" id="btn-nuevo-producto">+ Nuevo Producto</button>
+                    </div>
+                </div>
+                <table class="tabla-pedidos">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Producto</th>
+                            <th>Categoría</th>
+                            <th>Precio</th>
+                            <th>Stock</th>
+                            <th>Stock Mínimo</th>
+                            <th>Alerta</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tabla-productos">
+                        <tr>
+                            <td colspan="8" class="mensaje-tabla">Cargando...</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </section>
+
+            <section class="seccion-tabla">
+                <div class="cabecera-seccion">
+                    <h2>Categorías</h2>
+                    <form class="acciones" id="form-categoria">
+                        <input type="text" name="nombre_categoria" class="campo-control" placeholder="Nueva categoría" maxlength="100" required aria-label="Nombre de la categoría">
+                        <button type="submit" class="btn primario">+ Crear Categoría</button>
+                    </form>
+                </div>
+                <table class="tabla-pedidos">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Categoría</th>
+                            <th>Productos</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tabla-categorias">
+                        <tr>
+                            <td colspan="3" class="mensaje-tabla">Cargando...</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </section>
+
+            <dialog class="modal" id="modal-producto">
+                <h2 id="titulo-modal-producto">Nuevo Producto</h2>
+                <form class="formulario" id="form-producto">
+                    <label class="ancho-completo">Nombre del producto
+                        <input type="text" name="nombre_producto" maxlength="100" required>
+                    </label>
+                    <label>Precio (COP)
+                        <input type="number" name="precio" min="0" step="0.01" required>
+                    </label>
+                    <label>Categoría
+                        <select name="id_categoria" id="producto-categoria"></select>
+                    </label>
+                    <label>Stock
+                        <input type="number" name="stock" min="0" step="1" required>
+                    </label>
+                    <label>Stock mínimo
+                        <input type="number" name="stock_minimo" min="0" step="1" value="5" required>
+                    </label>
+                    <label class="ancho-completo">Descripción
+                        <textarea name="descripcion" maxlength="1000"></textarea>
+                    </label>
+                    <div class="acciones">
+                        <button type="button" class="btn secundario" data-cerrar>Cancelar</button>
+                        <button type="submit" class="btn primario">Guardar</button>
+                    </div>
+                </form>
+            </dialog>
+        </main>
+
+    </div>
+
+    <script src="js/api.js"></script>
+    <script src="js/comun.js"></script>
+    <script src="js/inventario.js"></script>
+
+</body>
+
+</html>

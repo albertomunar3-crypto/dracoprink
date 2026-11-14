@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dracoprink | Clientes</title>
+    <link rel="icon" href="img/logo.png">
+    <link rel="stylesheet" href="css/dashboard.css">
+</head>
+
+<body>
+
+    <div class="layout-dashboard">
+
+        <!-- Menú Lateral -->
+        <aside class="sidebar">
+            <img src="img/logo.png" alt="Logo Dracoprink" class="logo-sidebar">
+            <h2>Dracoprink</h2>
+            <nav class="menu">
+                <a href="dashboard.html">📊 Dashboard</a>
+                <a href="pedidos.html">🍕 Pedidos y Domicilios</a>
+                <a href="inventario.html">📦 Inventario</a>
+                <a href="clientes.html" class="active">👥 Clientes</a>
+                <a href="ventas.html">💰 Ventas y Contabilidad</a>
+                <a href="index.html" class="btn-salir" id="btn-cerrar-sesion">🚪 Cerrar Sesión</a>
+            </nav>
+        </aside>
+
+        <!-- Contenido Principal -->
+        <main class="contenido-main">
+            <header class="header-dashboard">
+                <h1>Clientes</h1>
+                <div class="usuario-badge">Usuario: <strong id="usuario-actual">-</strong> (<span id="usuario-rol">-</span>)</div>
+            </header>
+
+            <section class="seccion-tabla">
+                <div class="cabecera-seccion">
+                    <h2>Clientes Registrados (<span id="total-clientes">0</span>)</h2>
+                    <div class="acciones">
+                        <input type="search" id="buscar-cliente" class="campo-control buscador" placeholder="Buscar por nombre o teléfono..." aria-label="Buscar cliente">
+                        <button type="button" class="btn primario" id="btn-nuevo-cliente">+ Nuevo Cliente</button>
+                    </div>
+                </div>
+                <table class="tabla-pedidos">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Nombre</th>
+                            <th>Teléfono</th>
+                            <th>Correo</th>
+                            <th>Dirección</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tabla-clientes">
+                        <tr>
+                            <td colspan="6" class="mensaje-tabla">Cargando...</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </section>
+
+            <dialog class="modal" id="modal-cliente">
+                <h2 id="titulo-modal-cliente">Nuevo Cliente</h2>
+                <form class="formulario" id="form-cliente">
+                    <label>Nombre
+                        <input type="text" name="nombre" maxlength="100" required>
+                    </label>
+                    <label>Apellido
+                        <input type="text" name="apellido" maxlength="100" required>
+                    </label>
+                    <label>Teléfono
+                        <input type="tel" name="telefono" maxlength="20" required>
+                    </label>
+                    <label>Correo (opcional)
+                        <input type="email" name="correo" maxlength="100">
+                    </label>
+                    <label class="ancho-completo">Dirección
+                        <input type="text" name="direccion" maxlength="150" required>
+                    </label>
+                    <div class="acciones">
+                        <button type="button" class="btn secundario" data-cerrar>Cancelar</button>
+                        <button type="submit" class="btn primario">Guardar</button>
+                    </div>
+                </form>
+            </dialog>
+        </main>
+
+    </div>
+
+    <script src="js/api.js"></script>
+    <script src="js/comun.js"></script>
+    <script src="js/clientes.js"></script>
+
+</body>
+
+</html>
